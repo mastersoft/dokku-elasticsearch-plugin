@@ -121,7 +121,7 @@ case "$1" in
         # figure out IP to set env var
         ID=$(docker ps -a | grep "$CONTAINER_NAME" | awk '{print $1}')
         IP=$(docker inspect $ID | grep IPAddress | cut -d '"' -f 4)
-        dokku config:set "$APP" $ENVVAR_NAME="http://${IP}:9200"
+        dokku config:set "$APP" $ENVVAR_NAME="http://${PLUGIN_NAME}:9200"
         echo "-----> $APP linked to $CONTAINER_NAME container"
     fi
     ;;
